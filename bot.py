@@ -3,6 +3,7 @@ from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, fil
 import requests
 from dotenv import load_dotenv
 import os
+from keep_alive import keep_alive
 
 load_dotenv()
 
@@ -51,4 +52,5 @@ if __name__ == '__main__':
     app.add_handler(CommandHandler('start', start))
     app.add_handler(MessageHandler(filters.LOCATION, location_handler))
     app.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), city_handler))
+    keep_alive()
     app.run_polling()
