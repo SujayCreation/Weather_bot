@@ -48,9 +48,9 @@ async def city_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await update.message.reply_text(f"🌆 Weather in {city}, {country}:\nWeather: {weather}\nTemperature: {temp}°C")
 
 if __name__ == '__main__':
+    keep_alive()
     app = ApplicationBuilder().token(BOT_TOKEN).build()
     app.add_handler(CommandHandler('start', start))
     app.add_handler(MessageHandler(filters.LOCATION, location_handler))
     app.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), city_handler))
-    keep_alive()
     app.run_polling()
